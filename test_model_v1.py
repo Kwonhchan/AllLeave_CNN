@@ -24,7 +24,6 @@ def test(path):
 
     #테스트
 
-
     #모델 예측 수행
     
     pred = loaded_model.predict(testX)
