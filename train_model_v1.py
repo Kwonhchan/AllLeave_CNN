@@ -37,7 +37,7 @@ def create_model():
     #DNN
     model.add(layers.Flatten())
     model.add(layers.Dense(512, activation='relu'))
-    model.add(layers.Dense(5, activation='softmax'))
+    model.add(layers.Dense(10, activation='softmax'))
 
     return model
 
@@ -65,7 +65,7 @@ def train():
 
     #모델 컴파일 [sparse_categorical_crossentropy] : one-hot encoding 없이 정수 인코딩 된 상태에서 사용
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-    hist1 = model.fit(trainX, trainY, epochs=20, batch_size=20)
+    hist1 = model.fit(trainX, trainY, epochs=30, batch_size=20)
 
     #모델 평가
     model.evaluate(testX, testY)

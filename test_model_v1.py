@@ -4,42 +4,63 @@ import matplotlib.pyplot as plt
 import train_model_v1 as v1
 import tensorflow as tf
 import tensorflow_hub as hub
+import os
+from PIL import Image
+import random 
 
-def test(path):
+def test()->None:
     categories = {
             0 : 'Bigben' ,
             1 : 'Santorini',
             2 : 'Matterhorn',
             3 : 'Grand_Canyon',
-            4 : 'the_statue_of_liberty'
+            4 : 'the_statue_of_liberty',
+            5 :'eiffel_tower' ,
+            6 : 'Gold_gate_bridge', 
+            7 : 'Osakajo', 
+            8 : 'pisa_tower', 
+            9 : 'ayasofya_camii' 
 
         }
     #모델 이름 입력
-    Mname = input('모델이름.h5 입력')
+    Mname = 'train_model_v1.h5'
 
     #모델 불러오기
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(Mname)
-    trainX,testX,trainY,testY = v1.split()
 
-    #테스트
+    path_t = r'C:\Users\kwonh\Desktop\test_cnn\data_set\test_images'
+
+    img_array = []
+    img_files = [os.path.join(path_t, filename) for filename in os.listdir(path_t)]
+    for img_file in img_files:
+        try:
+            img = Image.open(img_file)
+            img = np.array(img)
+            print(img.shape)
+        
+            img = tf.image.resize(img, [256, 256]) / 255.0
+            if img.shape[-1] == 4:
+                img = img[:, :, :3]
+            img = np.expand_dims(img, axis=0)
+            img_array.append(np.array(img))
+            
+        except Exception as e:
+            print(f"Error processing image {img_file}: {e}")
 
 
-    #모델 예측 수행
-    
-    pred = loaded_model.predict(testX)
-    
-    test_image = keras.preprocessing.image.load_img(path, target_size=(256,256))
-    imageArr = np.array(test_image)
-    imageArr = imageArr / 255
-    imageArr = imageArr.reshape(-1,256,256,3)
-
-    pred = loaded_model.predict(imageArr)
+    if img_array:
+        data_file = np.concatenate(img_array, axis=0)
+        print(data_file.shape)
+        pred = loaded_model.predict(data_file)
 
     pred_labels = np.argmax(pred, axis = 1)
 
-    #예측 결과 실행
-    print(categories[int(pred_labels)])
-    plt.title(categories[int(pred_labels)])
-    plt.imshow(imageArr[0])
+    random_idx = random.choice(range(len(img_files)))
+    pred_label = pred_labels[random_idx]
+    img_path = img_files[random_idx]
+    img = Image.open(img_path)
+        
+    plt.title(categories[pred_label])
+    plt.imshow(img)
     plt.show()
