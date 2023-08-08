@@ -16,18 +16,28 @@ class img_processing:
         'santorini',
         'Matterhorn',
         'Grand_Canyon',
-        'the_statue_of_liberty'
-
-        
+        'the_statue_of_liberty',
+        'eiffel_tower',
+        'Gold_gate_bridge',
+        'Osakajo',
+        'pisa_tower',
+        'ayasofya_camii'    
     ] # 지역이름 추가하기
         
     def img_label(path,region):
+
+
         categories = {
             'bigben' : 0 ,
             'santorini' : 1,
             'Matterhorn' : 2,
             'Grand_Canyon' : 3,
-            'the_statue_of_liberty' : 4
+            'the_statue_of_liberty' : 4,
+            'eiffel_tower' : 5,
+            'Gold_gate_bridge' : 6,
+            'Osakajo' : 7,
+            'pisa_tower' : 8,
+            'ayasofya_camii' : 9
         }
         label = []
         images = []
@@ -54,8 +64,8 @@ def processing():
     labels = np.empty(0) # 배열생성
 
     for cate in img_processing.categories:
-        images,labels = img_processing.concat(cate,cate,images,labels)
-
+        images,labels = img_processing.concat(f'data_set/'+cate,cate,images,labels)
+    print(images.shape,labels.shape)
     return images,labels
 if __name__ == '__main__':  
     images,labels = processing()
