@@ -15,7 +15,7 @@ def test()->None:
             2 : 'Matterhorn',
             3 : 'Grand_Canyon',
             4 : 'the_statue_of_liberty',
-            5 :'eiffel_tower' ,
+            5 : 'eiffel_tower' ,
             6 : 'Gold_gate_bridge', 
             7 : 'Osakajo', 
             8 : 'pisa_tower', 
@@ -23,14 +23,14 @@ def test()->None:
 
         }
     #모델 이름 입력
-    Mname = 'train_model_v1.h5'
+    Mname = 'BigTransferModel.h5'
 
     #모델 불러오기
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(Mname)
 
     #테스트 이미지 경로
-    path_t = r'C:\Users\kwonh\Desktop\test_cnn\data_set\test_images'
+    path_t = r'data_set\test_images'
 
     img_array = []
     img_files = [os.path.join(path_t, filename) for filename in os.listdir(path_t)]
@@ -54,14 +54,19 @@ def test()->None:
         data_file = np.concatenate(img_array, axis=0)
         print(data_file.shape)
         pred = loaded_model.predict(data_file)
+    
+    pred_labels = np.argmax(pred, axis=1)
 
-    pred_labels = np.argmax(pred, axis = 1)
+    plt.figure(figsize=(10,10))
 
-    random_idx = random.choice(range(len(img_files)))
-    pred_label = pred_labels[random_idx]
-    img_path = img_files[random_idx]
-    img = Image.open(img_path)
-        
-    plt.title(categories[pred_label])
-    plt.imshow(img)
+    num_images = len(img_array)
+
+    for i in range(num_images):
+        plt.subplot(10, 10, i+1)
+        img = np.array(img_array[i])
+        img = img.reshape((256,256,3))
+        plt.imshow(img)
+        plt.title(categories[pred_labels[i]])
+        plt.axis('off')
     plt.show()
+

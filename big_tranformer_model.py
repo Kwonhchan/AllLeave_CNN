@@ -42,6 +42,3 @@ def train_bit():
     early_stopping = EarlyStopping(monitor='val_loss', patience=2)
     hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=16, callbacks=[early_stopping])
     bit_model.save('BigTransferModel.h5')
-
-train_bit()
-
