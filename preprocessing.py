@@ -67,6 +67,7 @@ def processing():
         images,labels = img_processing.concat(f'data_set/'+cate,cate,images,labels)
     print(images.shape,labels.shape)
     return images,labels
+
 if __name__ == '__main__':  
     images,labels = processing()
     print(images.shape,labels.shape)

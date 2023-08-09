@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from tensorflow import keras
 import test_model_v1 as tt
-# import big_tranformer_model as bt
+import big_tranformer_model as bt
 
 #모델 훈련
 
@@ -24,8 +24,8 @@ def main():
         print('다음 행동을 선택하세요.')
         main()
     elif num== 2:
-        # bt.train_bit()
-        # print('다음 행동을 선택하세요.')
+        bt.train_bit()
+        print('다음 행동을 선택하세요.')
         # main()
         pass
 #    elif num==3 :

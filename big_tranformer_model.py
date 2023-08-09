@@ -29,8 +29,8 @@ def train_bit():
     train_img, train_lab = pp.processing()
     val_img, val_lab = pp.processing()
 
-    train_ds = tf.data.Dataset.from_tensor_slices((train_img, train_lab)).batch(32)
-    val_ds = tf.data.Dataset.from_tensor_slices((val_img, val_lab)).batch(32)
+    train_ds = tf.data.Dataset.from_tensor_slices((train_img, train_lab)).batch(16)
+    val_ds = tf.data.Dataset.from_tensor_slices((val_img, val_lab)).batch(16)
 
     #모델 컴파일
     bit_model.compile(
@@ -40,7 +40,7 @@ def train_bit():
     )
 
     early_stopping = EarlyStopping(monitor='val_loss', patience=2)
-    hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=32, callbacks=[early_stopping])
+    hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=16, callbacks=[early_stopping])
     bit_model.save('BigTransferModel.h5')
 
 train_bit()
