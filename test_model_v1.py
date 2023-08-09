@@ -29,6 +29,7 @@ def test()->None:
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(Mname)
 
+    #테스트 이미지 경로
     path_t = r'C:\Users\kwonh\Desktop\test_cnn\data_set\test_images'
 
     img_array = []
