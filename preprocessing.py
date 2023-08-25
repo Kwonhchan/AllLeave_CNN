@@ -21,7 +21,19 @@ class img_processing:
         'Gold_gate_bridge',
         'Osakajo',
         'pisa_tower',
-        'ayasofya_camii'    
+        'ayasofya_camii',
+        'Donggung_Palace_and_Wolji_Pond',
+        'Gobi_Desert',
+        'Iceland_Aurora',
+        'kuta_beach',
+        'Machu_Picchu',
+        'Niagara_falls',
+        'Pyramid',
+        'Salar_de_Uyuni',
+        'Sydney_Opera_House',
+        'Torre_pendente_di_Pisa',
+        'Wat_Chedi_Luang'
+
     ] # 지역이름 추가하기
         
     def img_label(path,region):
@@ -37,7 +49,18 @@ class img_processing:
             'Gold_gate_bridge' : 6,
             'Osakajo' : 7,
             'pisa_tower' : 8,
-            'ayasofya_camii' : 9
+            'ayasofya_camii' : 9,
+            'Donggung_Palace_and_Wolji_Pond' : 10,
+            'Gobi_Desert' : 11,
+            'Iceland_Aurora' : 12,
+            'kuta_beach' : 13,
+            'Machu_Picchu' : 14,
+            'Niagara_falls' : 15,
+            'Pyramid' : 16,
+            'Salar_de_Uyuni' : 17,
+            'Sydney_Opera_House' : 18,
+            'Torre_pendente_di_Pisa' : 19,
+            'Wat_Chedi_Luang' : 20
         }
         label = []
         images = []
