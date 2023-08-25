@@ -13,7 +13,7 @@ def create_bit_model():
     model_url = "https://tfhub.dev/google/bit/m-r50x1/1"
     bit_model = tf.keras.Sequential([hub.KerasLayer(model_url)])
     #현재 10개의 데이터셋
-    num_classes = 21
+    num_classes = 20
     bit_model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
 
     return bit_model

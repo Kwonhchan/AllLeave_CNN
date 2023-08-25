@@ -29,7 +29,6 @@ class img_processing:
         'Machu_Picchu',
         'Niagara_falls',
         'Pyramid',
-        'Salar_de_Uyuni',
         'Sydney_Opera_House',
         'Torre_pendente_di_Pisa',
         'Wat_Chedi_Luang'
@@ -57,10 +56,9 @@ class img_processing:
             'Machu_Picchu' : 14,
             'Niagara_falls' : 15,
             'Pyramid' : 16,
-            'Salar_de_Uyuni' : 17,
-            'Sydney_Opera_House' : 18,
-            'Torre_pendente_di_Pisa' : 19,
-            'Wat_Chedi_Luang' : 20
+            'Sydney_Opera_House' : 17,
+            'Torre_pendente_di_Pisa' : 18,
+            'Wat_Chedi_Luang' : 19
         }
         label = []
         images = []
