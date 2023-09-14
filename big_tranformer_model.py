@@ -6,13 +6,21 @@ from tensorflow import keras
 import tensorflow_hub as hub
 from keras.callbacks import EarlyStopping
 import train_model_v1 as v1
+from tensorflow import keras
+from keras import layers
+from keras.layers import BatchNormalization
+from keras.layers import MaxPooling2D
 
 
 def create_bit_model():
+    #TODO GB그룹 정규화 사용해보기
+    tf.random.set_seed(226)
     model_url = "https://tfhub.dev/google/bit/m-r50x1/1"
     bit_model = tf.keras.Sequential([hub.KerasLayer(model_url)])
-    #현재 10개의 데이터셋
+    #현재 30개의 데이터셋
     num_classes = 30
+    
+    bit_model.add(layers.Flatten())
     bit_model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
 
     return bit_model
@@ -26,8 +34,8 @@ def train_bit():
     #텐서플로우 파이프라인 사용하여 데이터셋 구성
     trainX, valX, trainY, valY = v1.split()
 
-    train_ds = tf.data.Dataset.from_tensor_slices((trainX, trainY)).batch(16)
-    val_ds = tf.data.Dataset.from_tensor_slices((valX, valY)).batch(16)
+    train_ds = tf.data.Dataset.from_tensor_slices((trainX, trainY)).batch(32)
+    val_ds = tf.data.Dataset.from_tensor_slices((valX, valY)).batch(32)
 
     #모델 컴파일
     bit_model.compile(
@@ -37,6 +45,6 @@ def train_bit():
     )
 
     early_stopping = EarlyStopping(monitor='val_loss', patience=2)
-    hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=16, callbacks=[early_stopping])
+    hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=32, callbacks=[early_stopping])
     bit_model.save('C:\\Users\\admin\\Desktop\\AI_MODEL\\BigTransferModel1')
     

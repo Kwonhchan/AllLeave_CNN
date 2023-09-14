@@ -1,13 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from keras import layers
-from keras.utils import plot_model
-from keras.layers import BatchNormalization
-from keras.layers import MaxPooling2D
 import os
-import matplotlib.pyplot as plt
 
 class img_processing:
         
