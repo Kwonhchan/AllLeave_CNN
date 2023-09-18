@@ -13,7 +13,6 @@ from keras.layers import MaxPooling2D
 
 
 def create_bit_model():
-    #TODO GB그룹 정규화 사용해보기
     tf.random.set_seed(226)
     model_url = "https://tfhub.dev/google/bit/s-r152x4/1"
     bit_model = tf.keras.Sequential([hub.KerasLayer(model_url)])
