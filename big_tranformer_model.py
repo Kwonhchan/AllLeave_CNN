@@ -15,7 +15,7 @@ from keras.layers import MaxPooling2D
 def create_bit_model():
     #TODO GB그룹 정규화 사용해보기
     tf.random.set_seed(226)
-    model_url = "https://tfhub.dev/google/bit/m-r50x1/1"
+    model_url = "https://tfhub.dev/google/bit/s-r152x4/1"
     bit_model = tf.keras.Sequential([hub.KerasLayer(model_url)])
     #현재 30개의 데이터셋
     num_classes = 30
@@ -46,5 +46,5 @@ def train_bit():
 
     early_stopping = EarlyStopping(monitor='val_loss', patience=2)
     hist = bit_model.fit(train_ds, validation_data = val_ds, epochs=50, batch_size=32, callbacks=[early_stopping])
-    bit_model.save('C:\\Users\\admin\\Desktop\\AI_MODEL\\BigTransferModel1')
+    bit_model.save('C://Users//kwonh//Desktop//test_cnn//Ai_model152')
     
