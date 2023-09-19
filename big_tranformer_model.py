@@ -11,7 +11,7 @@ from keras import layers
 from keras.layers import BatchNormalization
 from keras.layers import MaxPooling2D
 
-
+#ㅇㅇ
 def create_bit_model():
     tf.random.set_seed(226)
     model_url = "https://tfhub.dev/google/bit/s-r152x4/1"
