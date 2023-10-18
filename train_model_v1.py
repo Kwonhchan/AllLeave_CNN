@@ -34,7 +34,6 @@ def create_model():
     model.add(MaxPooling2D(pool_size=(2,2)))
     model.add(layers.Dropout(0.2))
 
-    #DNN
     model.add(layers.Flatten())
     model.add(layers.Dense(512, activation='relu'))
     model.add(layers.Dense(10, activation='softmax'))
