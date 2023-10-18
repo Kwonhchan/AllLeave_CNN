@@ -1,13 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from keras import layers
-from keras.utils import plot_model
-from keras.layers import BatchNormalization
-from keras.layers import MaxPooling2D
 import os
-import matplotlib.pyplot as plt
 
 class img_processing:
         
@@ -31,7 +25,17 @@ class img_processing:
         'Pyramid',
         'Sydney_Opera_House',
         'Torre_pendente_di_Pisa',
-        'Wat_Chedi_Luang'
+        'Wat_Chedi_Luang',
+        'Venice',
+        'Victoria_Falls',
+        'Sagrada_Familia',
+        'Namib_Desert',
+        'Lake_Louise',
+        'Gyeongbokgung',
+        'Great_Ocean_Road',
+        'Cappadocia',
+        'Angel_Falls',
+        'Alps'
 
     ] # 지역이름 추가하기
         
@@ -58,7 +62,17 @@ class img_processing:
             'Pyramid' : 16,
             'Sydney_Opera_House' : 17,
             'Torre_pendente_di_Pisa' : 18,
-            'Wat_Chedi_Luang' : 19
+            'Wat_Chedi_Luang' : 19,
+            'Venice' : 20,
+            'Victoria_Falls' : 21,
+            'Sagrada_Familia' : 22,
+            'Namib_Desert' : 23,
+            'Lake_Louise' : 24,
+            'Gyeongbokgung' : 25,
+            'Great_Ocean_Road' : 26,
+            'Cappadocia' : 27,
+            'Angel_Falls' : 28,
+            'Alps' : 29
         }
         label = []
         images = []
